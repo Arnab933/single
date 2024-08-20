@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="background-color: rgb(37, 33, 33);" id="images">
+        <ul>
+            <li><img width="200px" id="deer" src="three.png" alt=""></li>
+            <li><img width="200px" id="river" src="river.png" alt=""></li>
+            <li><img width="200px" id="owl" src="one.png" alt="" ></li>
+            <li><img width="200px" id="empala" src="four.png" alt=""></li>
+            <li><img width="200px" id="bird" src="five.png" alt=""></li>
+        </ul>
+    </div>
+</body>
+<script>
+    /*document.getElementById('owl').onclick = function(){ 
+         alert('owl clicked')
+        },false)
+
+        //attachEvent()
+        //jQuery - on
+
+        //type,timestamp,defaultPrevented
+        //target,toElement,srcElement,currentTarget
+        //clientX,clientY,screenX,screenY
+        //altKey,ctrlKey,shiftKey,keyCode
+    }*/
+    // here onclick function is very old version so it gives us very less property
+    /*document.getElementById('owl').addEventListener('click' , function(e){
+        console.log(e)})*/
+
+    document.getElementById('images').addEventListener('click' , function(e){
+    console.log("clicked inside the ul")},false)
+    
+    // when we clicked the owl then at first "owl clicked" will be displayed then bubbling up means then displayed "clicked inside the ul"
+    document.getElementById('owl').addEventListener('click' , function(e){
+        //here e is the object  
+        //a propertiy holds called stopPropagation(), if we declare it then the propagation not effect 
+        //means stop bubbled up means upper value not displayed when the lower value is displayed
+        e.stopPropagation();
+    console.log("owl clicked")},false)
+    //here default value is false but if we decalare it as true 
+    //at first displayed the upper value means parent value it's called capturing mode 
+</script>
+</html>
