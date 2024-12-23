@@ -1,0 +1,48 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.database;
+import java.sql.Connection;
+import java.io.IOException;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
+
+/**
+ *
+ * @author arnab
+ */
+public class Mydatabase {
+    public static void main(String[]args) throws IOException{
+        String url = "jdbc:mysql://localhost:3308/student_id"; //database name
+        String user = "root"; // mysql user name
+        String password = "1234";  //password
+        
+        
+       
+            try {
+            // Load the MySQL JDBC driver
+            Class.forName("com.mysql.cj.jdbc.Driver"); // Explicitly load the driver
+
+            // Establish the connection
+            Connection conn = (Connection) DriverManager.getConnection(url, user, password);
+
+            System.out.println("Connected to the database successfully!");
+            PreparedStatement stmt = conn.prepareStatement("insert into student(id,name,age) values('3391','Arnab Pratihar','21')");
+            int check = stmt.executeUpdate();
+            if(check > 0)
+                System.out.println("The query is executed");
+            else
+                System.out.println("The query is not executed");
+
+            // Close the connection
+            conn.close();
+        } catch (ClassNotFoundException e) {
+            System.out.println("MySQL JDBC Driver not found!");
+        } catch (SQLException e) {
+            System.out.println("Database connection failed!");
+        }
+        
+    }
+}
